@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.yaboard">
+
+	
+
+	<!-- 글쓰기. cotent은 프론트에서 글쓰기 누르면 자동적으로 받아온다 이걸로 컨텐츠를 구분한다. -->
+	<insert id="insertBoard"  parameterType="BoardVO">
+		<![CDATA[
+			insert into BoardTbl(Board_Title, Board_Body,ya_id, content_title)
+			values(#{boardTitle}, #{boardBody}, #{id}, #{contentTitle})
+		]]>      
+	</insert>
+	
+	<insert id="insertBoard_reply"  parameterType="BoardRPVO">
+		<![CDATA[
+			insert into boardReplyTbl(find_board, id, reply_body)
+			values(#{boardIndex}, #{id}, #{replyBody})
+		]]>      
+	</insert>
+	
+	<insert id="insertReview"  parameterType="ReviewVO">
+		<![CDATA[
+			insert into yaReviewTbl(id, review_title, eval, review_body)
+			values(#{id}, #{reviewTitle}, #{eval}, #{reviewBody})
+		]]>      
+	</insert>
+	<insert id="insertReviewReply"  parameterType="ReviewRPVO">
+		<![CDATA[
+			insert into yaReviewReplyTbl(find_review, id, reply_body)
+			values(#{reviewIndex}, #{id}, #{replyBody})
+		]]>      
+	</insert>
+
+
+	<update id="updateBoard"  parameterType="BoardVO">
+		<![CDATA[
+			update boardTbl set Board_Title = #{boardTitle}, Board_Body = #{boardBody}
+			where seq_board = #{index}
+		]]>      
+	</update>
+	
+	<update id="updateBoardReply"  parameterType="BoardRPVO">
+		<![CDATA[
+			update boardReplyTbl set reply_body = #{replyBody}
+			where seq_boardreply = #{boardReplyIndex}
+		]]>      
+	</update>
+	<update id="updateReview"  parameterType="ReviewVO">
+		<![CDATA[
+			update yaReviewTbl set eval = #{eval}, review_body = #{reviewBody}
+			where seq_review = #{index}
+		]]>      
+	</update>
+	<update id="updateReviewReply"  parameterType="ReviewRPVO">
+		<![CDATA[
+			update yaReviewReplyTbl set reply_body = #{replyBody}
+			where seq_reviewreply= #{reviewReplyIndex}
+		]]>      
+	</update>
+	
+	
+	
+	<delete id="deleteBoard"  parameterType="int">
+		<![CDATA[
+			delete from BoardTbl where seq_board = #{index}
+		]]>      
+	</delete>
+	
+	<delete id="deleteBoardReply"  parameterType="int">
+		<![CDATA[
+			delete from boardReplyTbl where seq_boardreply = #{boardReplyIndex}
+		]]>      
+	</delete>
+	
+	<delete id="deleteReview"  parameterType="int">
+		<![CDATA[
+			delete from yaReviewTbl	where seq_review = #{index}
+		]]>      
+	</delete>
+	
+	<delete id="deleteReviewReply"  parameterType="int">
+		<![CDATA[
+			delete from yaReviewReplyTbl where seq_reviewreply= #{reviewReplyIndex}
+		]]>      
+	</delete>
+	
+	<resultMap id="readBoardResult" type="BoardVO">
+		<result property="index" column="seq_board" />
+		<result property="boardTitle" column="Board_Title" />
+		<result property="boardBody" column="Board_Body" />
+		<result property="id" column="ya_id" />
+		<result property="viewCount" column="view_count" />
+		<result property="boardRecommend" column="board_recommend" />
+		<result property="boardNotRecommend" column="board_not_recommend" />
+		<result property="report" column="report" />
+		<result property="contentTitle" column="content_title" />
+		<result property="timestamp" column="write_time" />
+	</resultMap>
+	<resultMap id="readBoardReplyResult" type="BoardRPVO">
+		<result property="boardReplyIndex" column="seq_boardreply" />
+		<result property="boardIndex" column="find_board" />
+		<result property="replyBody" column="reply_body" />
+		<result property="id" column="id" />
+		<result property="timestamp" column="write_time" />
+	</resultMap>
+	<resultMap id="readReviewResult" type="ReviewVO">
+		<result property="index" column="seq_review" />
+		<result property="id" column="id" />
+		<result property="ottName" column="ottName" />
+		<result property="reviewTitle" column="review_title" />
+		<result property="eval" column="eval" />
+		<result property="reviewBody" column="review_body" />
+		<result property="reviewRecommend" column="review_recommand" />
+		<result property="reviewRecommend" column="review_not_recommend" />
+		<result property="spo" column="spo" />
+		<result property="timestamp" column="write_time" />
+	</resultMap>
+	<resultMap id="readReviewReplyResult" type="ReviewRPVO">
+		<result property="reviewReplyIndex" column="seq_reviewreply" />
+		<result property="reviewIndex" column="find_review" />
+		<result property="id" column="id" />
+		<result property="replyBody" column="reply_body" />
+		<result property="replyRecommend" column="reply_recommend" />
+		<result property="replyNotRecommend" column="reply_not_recommend" />
+		<result property="timestamp" column="write_time" />
+	</resultMap>
+	
+	<select id="selectBoard"  parameterType="String"  resultMap="readBoardResult">
+		<![CDATA[
+			select * from BoardTbl where content_title = #{contentTitle} 
+		]]>      
+	</select>
+	
+		<select id="selectDetailBoard"  parameterType="String"  resultMap="readBoardResult">
+		<![CDATA[
+			select * from BoardTbl where seq_board = #{index} 
+		]]>      
+	</select>
+	
+	
+	<select id="selectBoardReply"  parameterType="String" resultMap="readBoardReplyResult">
+		<![CDATA[
+			select * from boardReplyTbl where find_board = #{boardIndex} 
+		]]>      
+	</select>
+		<select id="selectReview"  parameterType="String"  resultMap="readReviewResult">
+		<![CDATA[
+			select * from yaReviewTbl where review_title = #{reviewTitle} 
+		]]>      
+	</select>
+	
+
+	
+	
+		
+
+	<select id="selectReviewReply"  parameterType="String"  resultMap="readReviewReplyResult">
+		<![CDATA[
+			select * from yaReviewReplyTbl where find_review = #{reviewIndex}
+		]]>      
+	</select>
+	
+	<update id="countView"  parameterType="int">
+	<![CDATA[
+		update BoardTbl set view_count = view_count+1
+		where seq_board = #{index}
+	]]>    
+	</update>
+	
+	
+	<insert id="insertDBTitle"  parameterType="String">
+		<![CDATA[
+			insert into apiDBTest(title)
+			values(#{title})
+		]]>      
+	</insert>
+		<insert id="insertDB"  parameterType="ContentDbVO">
+		<![CDATA[
+			insert into apiDB(id, title, genres)
+			values(#{id},#{title}, #{genres})
+		]]>      
+		
+	</insert>
+<!-- 			<insert id="insertDB"  parameterType="ContentDbVO">
+		<![CDATA[
+			insert into apiDB(title, genres)
+			values(#{title}, #{title})
+		]]>      
+		
+	</insert> -->
+	<!-- 글 상세보기  -->
+	
+	
+	<!-- result map type으로 다시하자
+
+
+
+	
+	
+
+	
+	
+
+	
+
+	
+
+	
+	
+	
+
+	
+
+	
+
+	
+		 삭제할 게시물 이름을 게시글 고유번호로 찾는다 이거 필요없을듯?
+	<select id="selectDeleteBoard"  parameterType="int"  resultType="String">
+		<![CDATA[
+			select Board_Title from boardtbl where seq_board = #{seq_board} 
+		]]>      
+	</select>
+	
+
+	
+	<select id="selectDeleteReview"  parameterType="int"  resultType="String">
+		<![CDATA[
+			select review_title from yareviewtbl where seq_review = #{seq_review} 
+		]]>      
+	</select>
+
+	
+	삭제할 게시물 이름을 토대로 삭제
+
+	
+	
+	조회수 
+  
+	 -->
+</mapper>

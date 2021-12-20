@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.content">
+
+	<resultMap id="movie_filter" type="ContentVO">
+	</resultMap>
+	<resultMap id="platform_filter" type="ContentVO">
+	</resultMap>
+	<resultMap id="new_filter" type="ContentVO">
+	</resultMap>
+	<resultMap id="recommend_filter" type="ContentVO">
+	</resultMap>
+	
+	<select id="selectMovieFilter" resultMap="movie_filter">
+	<![CDATA[
+			select * from contenttbl where content_title = #{contentTitle} 
+		]]>  
+	</select>
+</mapper>
+

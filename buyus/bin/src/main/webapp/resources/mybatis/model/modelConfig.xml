@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="mc.sn.ybjVO.ybjBoardReplyVO"  alias="BoardRPVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjBoardReportVO"  alias="BoardReportVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjBoardVO"  alias="BoardVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjContentVO"  alias="ContentVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjMemVO"  alias="MemVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjOttVO"  alias="OttVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjReviewReplyVO"  alias="ReviewReplyVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjReviewReportVO"  alias="ReviewReportVO" />
+		<typeAlias type="mc.sn.ybjVO.ybjReviewVO"  alias="ReviewVO" />
+	</typeAliases>
+</configuration>

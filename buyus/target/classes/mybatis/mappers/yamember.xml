@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.yamember">
+	<resultMap id="memResult" type="MemVO">
+		<result property="yaId" column="ya_id" />
+		<result property="yaEmail" column="ya_email" />
+		<result property="yaPwd" column="ya_pwd" />
+		<result property="yaName" column="ya_name" />
+		<result property="yaMyottS" column="ya_myOTT" />
+		<result property="yaPhNum" column="ya_phNum" />
+		<result property="yaLevel" column="ya_level" />
+		<result property="yaPoint" column="ya_point" />
+		<result property="timestamp" column="write_time" />
+	</resultMap>
+	<resultMap id="reviewResult" type="ReviewVO">
+		<result property="index" column="seq_review" />
+		<result property="id" column="id" />
+		<result property="ottName" column="ottName" />
+		<result property="reviewTitle" column="review_title" />
+		<result property="eval" column="eval" />
+		<result property="reviewBody" column="review_body" />
+		<result property="reviewRecommend" column="review_recommend" />
+		<result property="reviewNotRecommend" column="review_not_recommend" />
+		<result property="spo" column="spo" />
+	</resultMap>
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="MemVO">
+		<![CDATA[
+			insert into yaMemberTbl(ya_id,ya_email,ya_pwd,ya_name,ya_myOTT,ya_phNum)
+			values(#{yaId}, #{yaEmail}, #{yaPwd}, #{yaName}, #{yaMyottS}, #{yaPhNum})
+		]]>
+	</insert>
+	<!-- 이메일 중복체크 -->
+	<select id="checkEmail" resultType="int" parameterType="String">
+		<![CDATA[
+			select count(*) from yaMemberTbl where ya_email=#{yaEmail} 
+		]]>
+	</select>
+	<!-- 아이디 중복체크 -->
+	<select id="checkId" resultType="int" parameterType="String">
+		<![CDATA[
+			select count(*) from yaMemberTbl where ya_id=#{yaId}
+		]]>
+	</select>
+	<!-- 로그인 -->
+	<select id="selectByEmailPwd" resultMap="memResult"
+		parameterType="MemVO"> 
+	<![CDATA[ select * from yaMemberTbl
+	where ya_email =#{yaEmail} and ya_pwd =#{yaPwd} ]]>
+	</select>
+	<!-- 이메일 찾기 -->
+	<select id="selectEmailByName" resultMap="memResult"
+		parameterType="String">
+	<![CDATA[
+		select * from yaMemberTbl
+		where ya_name =#{yaName}		
+	]]>
+	</select>
+	<!-- 비밀번호 찾기 -->
+	<select id="selectPwdByEmailPhNum" resultMap="memResult"
+		parameterType="MemVO">
+	<![CDATA[
+		select * from yaMemberTbl
+		where ya_email =#{yaEmail} and ya_phNum =#{yaPhNum}		
+	]]>
+	</select>
+	<!-- 회원탈퇴 -->
+	<delete id="deleteByEmailPwd" parameterType="MemVO">
+	<![CDATA[
+		delete from yaMemberTbl	
+		where ya_email=#{yaEmail} and ya_pwd=#{yaPwd}		
+	]]>
+	</delete>
+	<!-- 내 정보보기 (회원정보) -->
+	<select id="selectInfoById" resultMap="memResult"
+		parameterType="String"> 
+	<![CDATA[ select * from yaMemberTbl
+	where ya_id =#{yaId} ]]>
+	</select>
+	
+	<!-- 내 정보보기 (리뷰정보) -->
+	<select id="selectReviewById" resultMap="reviewResult"
+		parameterType="String"> 
+	<![CDATA[ select * from yaReviewTbl
+	where id =#{id} ]]>
+	</select>
+	
+	<!-- 내 정보수정 -->
+	<update id="updateInfo" parameterType="MemVO">
+	<![CDATA[
+		update yaMemberTbl
+		set ya_email =#{yaEmail},
+		ya_pwd =#{yaPwd},
+		ya_name =#{yaName},
+		ya_myOTT =#{yaMyottS},
+		ya_phNum =#{yaPhNum}
+		where ya_id =#{yaId} ]]>
+	</update>
+
+</mapper>
+
+<!-- <select id="selectByEmailPwd" resultType="MemVO" parameterType="MemVO"> 
+	<![CDATA[ select ya_id as yaId, ya_email as yaEmail, ya_pwd as yaPwd, ya_name 
+	as yaName, ya_myOTT as yaMyOTT, ya_phNum as yaPhNum, ya_level as yaLevel, 
+	ya_point as yaPoint, write_time as timestamp from yaMemberTbl where ya_email 
+	=#{yaEmail} and ya_pwd =#{yaPwd} ]]> </select> -->
+<!-- <select id="selectByEmailPwd" resultMap="memResult" parameterType="MemVO"> 
+	<![CDATA[ select * from yaMemberTbl where ya_email =#{yaEmail} and ya_pwd 
+	=#{yaPwd} ]]> </select> -->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="mc.sn.buyus.ybjVO.YbjMemVO" alias="MemVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.YbjReviewVO"  alias="ReviewVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.YbjBoardVO"  alias="BoardVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.YbjBoardReplyVO"  alias="BoardRPVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.YbjReviewReplyVO"  alias="ReviewRPVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.YbjContentVO"  alias="ContentVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.ContentDbVO"  alias="ContentDbVO" />
+	<!-- <typeAlias type="mc.sn.buyus.ybjVO.dbVO" alias="DbVO" /> -->
+	<!-- <typeAlias type="mc.sn.buyus.ybjVO.YbjBoardReportVO" alias="BoardReportVO" 
+		/> <typeAlias type="mc.sn.buyus.ybjVO.YbjMemVO" alias="MemVO" /> <typeAlias 
+		type="mc.sn.buyus.ybjVO.YbjOttVO" alias="OttVO" /> <typeAlias type="mc.sn.buyus.ybjVO.YbjReviewReportVO" 
+		alias="ReviewReportVO" /> -->
+	</typeAliases>
+</configuration>
