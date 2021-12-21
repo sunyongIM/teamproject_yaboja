@@ -6,10 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import mc.sn.buyus.ybjVO.YbjBoardReplyVO;
+import mc.sn.buyus.ybjVO.YbjBoardVO;
+import mc.sn.buyus.ybjVO.YbjReviewReplyVO;
 import mc.sn.buyus.ybjVO.YbjReviewVO;
-import temp.YbjBoardReplyVO;
-import temp.YbjBoardVO;
-import temp.YbjReviewReplyVO;
 
 @Repository("BoardDAO")
 

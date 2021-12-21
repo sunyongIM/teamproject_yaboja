@@ -1,5 +1,8 @@
 package mc.sn.buyus.ybjVO;
 
+import org.springframework.stereotype.Repository;
+
+@Repository("secuVO")
 public class SecurityVO {
 	private YbjMemVO memVO;
 	private String jwt;

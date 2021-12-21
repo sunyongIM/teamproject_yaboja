@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mc.sn.buyus.ybjDAO.BoardDAO;
+import mc.sn.buyus.ybjVO.YbjBoardReplyVO;
+import mc.sn.buyus.ybjVO.YbjBoardVO;
+import mc.sn.buyus.ybjVO.YbjReviewReplyVO;
 import mc.sn.buyus.ybjVO.YbjReviewVO;
-import temp.YbjBoardReplyVO;
-import temp.YbjBoardVO;
-import temp.YbjReviewReplyVO;
+
 @Service("boardService")
 public class BoardService {
 	@Autowired

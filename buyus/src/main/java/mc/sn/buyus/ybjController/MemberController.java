@@ -38,6 +38,11 @@ public class MemberController {
 	private YbjMemVO memVO;
 	@Autowired
 	private SecurityService securityService;
+	@Autowired
+	private SecurityVO securityVO;
+	@Autowired
+	private InfoReviewVO infoReviewVO;
+	
 
 	// 아이디 중복확인
 	@RequestMapping(value = "join/checkId", method = RequestMethod.GET, produces = "application/json; charset=utf8")
@@ -91,14 +96,13 @@ public class MemberController {
 //		System.out.println(json);
 		securityService = new SecurityServiceImpl();
 		String token = null;
-		SecurityVO securityVO = null;
 		YbjMemVO resultVO = new YbjMemVO();
 		
 		memVO = new ObjectMapper().readValue(json, YbjMemVO.class);
 		resultVO = memberService.login(memVO);
 		if (resultVO != null) {
 //			System.out.println("success! " + resultVO);
-			token = securityService.createJWT(resultVO.getYaId(), (2 * 1000 * 60 * 60));
+			token = securityService.createJWT(resultVO.getYaId(), (6 * 1000 * 60 * 60));
 			securityVO = new SecurityVO(resultVO, token);
 		} else {
 //			System.out.println("fail");
@@ -175,9 +179,9 @@ public class MemberController {
 		}
 		memVO = memberService.findInfoById(jwtId);
 		review = memberService.findReviewById(jwtId);
-		InfoReviewVO result = new InfoReviewVO(memVO, review);
+		infoReviewVO = new InfoReviewVO(memVO, review);
 //		System.out.println(result);
-		return result;
+		return infoReviewVO;
 	}
 
 	// 내 정보수정

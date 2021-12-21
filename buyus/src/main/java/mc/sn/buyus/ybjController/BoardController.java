@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import mc.sn.buyus.ybjService.BoardService;
+import mc.sn.buyus.ybjVO.YbjBoardReplyVO;
+import mc.sn.buyus.ybjVO.YbjBoardVO;
+import mc.sn.buyus.ybjVO.YbjReviewReplyVO;
 import mc.sn.buyus.ybjVO.YbjReviewVO;
-import temp.YbjBoardReplyVO;
-import temp.YbjBoardVO;
-import temp.YbjReviewReplyVO;
 
 @RestController("boardController")
 

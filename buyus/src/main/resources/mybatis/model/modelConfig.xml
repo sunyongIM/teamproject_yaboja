@@ -6,6 +6,8 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="mc.sn.buyus.ybjVO.YbjMemVO" alias="MemVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.SecurityVO" alias="SecuVO" />
+		<typeAlias type="mc.sn.buyus.ybjVO.InfoReviewVO" alias="InfoReVO" />
 		<typeAlias type="mc.sn.buyus.ybjVO.YbjReviewVO"  alias="ReviewVO" />
 		<typeAlias type="mc.sn.buyus.ybjVO.YbjBoardVO"  alias="BoardVO" />
 		<typeAlias type="mc.sn.buyus.ybjVO.YbjBoardReplyVO"  alias="BoardRPVO" />

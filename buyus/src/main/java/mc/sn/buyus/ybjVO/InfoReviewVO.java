@@ -2,6 +2,9 @@ package mc.sn.buyus.ybjVO;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository("infoReVO")
 public class InfoReviewVO {
 	private YbjMemVO memVO;
 	private List<YbjReviewVO> review;
