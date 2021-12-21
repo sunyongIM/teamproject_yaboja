@@ -1,4 +1,4 @@
-package mc.sn.buyus.ybjVO;
+package temp;
 
 import java.util.List;
 import java.util.Map;

@@ -72,7 +72,7 @@ public class YbjMemVO {
 		return this.yaMyottS.split(" ");
 	}
 
-	// serialize할때 (VO => Json)
+	// deserialize할때 (Json => VO)
 	public void setYaMyott(String[] yaMyott) {
 		this.yaMyottS = "";
 		if (yaMyott.length > 0) {
