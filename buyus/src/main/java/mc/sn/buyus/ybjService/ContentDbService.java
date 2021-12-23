@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mc.sn.buyus.ybjDAO.ContentDbDAO;
-import temp.ContentDbVO;
+import mc.sn.buyus.ybjVO.ContentDbVO;
 
 @Service("contentDbServie")
 public class ContentDbService {

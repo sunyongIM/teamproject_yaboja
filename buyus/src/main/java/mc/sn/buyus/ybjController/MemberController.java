@@ -73,23 +73,39 @@ public class MemberController {
 	}
 
 	// 회원가입
+//	@RequestMapping(value = "join", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+//	public void join(@RequestBody String json, HttpServletResponse resp) throws IOException {
+////		System.out.println(json);
+//		try {
+//			memVO = new ObjectMapper().readValue(json, YbjMemVO.class);
+//			flag = memberService.addMember(memVO);
+//		} catch (Exception e) {
+////			System.out.println("회원가입 실패");
+//			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+//		}
+//		if (flag) {
+////			System.out.println("회원가입 성공");
+//			resp.sendError(HttpServletResponse.SC_OK);
+//		}
+////		System.out.println(memVO);
+//	}
+
+	// 회원가입
 	@RequestMapping(value = "join", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	public void join(@RequestBody String json, HttpServletResponse resp) throws IOException {
-//		System.out.println(json);
+	public void join(@RequestBody YbjMemVO vo, HttpServletResponse resp) throws IOException {
+		System.out.println(vo);
 		try {
-			memVO = new ObjectMapper().readValue(json, YbjMemVO.class);
-			flag = memberService.addMember(memVO);
+			flag = memberService.addMember(vo);
 		} catch (Exception e) {
-//			System.out.println("회원가입 실패");
+			System.out.println("회원가입 실패");
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 		if (flag) {
-//			System.out.println("회원가입 성공");
+			System.out.println("회원가입 성공");
 			resp.sendError(HttpServletResponse.SC_OK);
 		}
-//		System.out.println(memVO);
 	}
-
+	
 	// 로그인
 	@RequestMapping(value = "login", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public SecurityVO logIn(@RequestBody String json, HttpServletResponse resp) throws IOException {
@@ -131,6 +147,7 @@ public class MemberController {
 		return result;
 	}
 
+	// 비밀번호 찾기
 	@RequestMapping(value = "login/findPwd", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public HashMap<String, String> findPwd(@RequestBody String json, HttpServletResponse resp) throws IOException {
 		String pwd = null;

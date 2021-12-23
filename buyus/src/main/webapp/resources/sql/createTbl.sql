@@ -9,10 +9,10 @@ create table yaMemberTbl(
    ya_pwd varchar(10) not null,
    ya_name nvarchar(10) not null,
    ya_myOTT varchar(100) not null,
-   ya_phNum varchar(20) not null,
+   ya_phNum varchar(20) not null unique,
    ya_level int(4) default 1,
    ya_point int(4) default 0,
-   write_time timestamp default now()
+   join_time timestamp default now()
 ) default character set utf8 collate utf8_general_ci;
 
 create table ottTbl(
